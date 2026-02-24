@@ -70,4 +70,26 @@ public class Student {
     public void setGrade3(BigDecimal grade3) {
         this.grade3 = grade3;
     }
+
+    @Override
+    public String toString() {
+        return """
+                -----------------------
+                Student
+                -----------------------
+                Name: %s
+                Email: %s
+                RA: %s
+                Grade: %s - %s - %s
+                """.
+                formatted(
+                        name,
+                        email,
+                        ra,
+                        grade1,
+                        grade2,
+                        grade3
+                        );
+
+    }
 }

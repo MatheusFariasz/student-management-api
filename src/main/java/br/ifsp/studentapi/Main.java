@@ -21,6 +21,8 @@ public class Main {
         student.setGrade2(BigDecimal.valueOf(9));
         student.setGrade3(BigDecimal.valueOf(8));
 
+        System.out.println(student);
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("studentapi");
 
         EntityManager em = factory.createEntityManager();
