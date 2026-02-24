@@ -1,5 +1,6 @@
 package br.ifsp.studentapi;
 
+import br.ifsp.studentapi.dao.StudentDAO;
 import br.ifsp.studentapi.model.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -24,9 +25,11 @@ public class Main {
 
         EntityManager em = factory.createEntityManager();
 
+        StudentDAO studentDAO = new StudentDAO(em);
+
         em.getTransaction().begin();
 
-        em.persist(student);
+        studentDAO.create(student);
 
         em.getTransaction().commit();
 
