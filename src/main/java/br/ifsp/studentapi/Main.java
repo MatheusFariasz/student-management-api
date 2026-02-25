@@ -17,9 +17,9 @@ public class Main {
         student.setName("Matheus");
         student.setRa("SC304887X");
         student.setEmail("matheus@ifsp.edu.br");
-        student.setGrade1(BigDecimal.valueOf(10));
+        student.setGrade1(BigDecimal.valueOf(2));
         student.setGrade2(BigDecimal.valueOf(9));
-        student.setGrade3(BigDecimal.valueOf(8));
+        student.setGrade3(BigDecimal.valueOf(2));
 
         System.out.println(student);
 

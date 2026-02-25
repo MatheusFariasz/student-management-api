@@ -3,6 +3,7 @@ package br.ifsp.studentapi.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Entity
 @Table(name = "students")
@@ -71,6 +72,16 @@ public class Student {
         this.grade3 = grade3;
     }
 
+    public BigDecimal getGradeAveraged(){
+        return grade1.add(grade2).add(grade3).divide(BigDecimal.valueOf(3), 2, RoundingMode.FLOOR);
+    }
+
+    public String getStatus(){
+        if (getGradeAveraged().compareTo(BigDecimal.valueOf(4)) < 0) return "Failed";
+        if (getGradeAveraged().compareTo(BigDecimal.valueOf(6)) < 0) return "Remedial";
+        return "Approved";
+    }
+
     @Override
     public String toString() {
         return """
@@ -81,6 +92,8 @@ public class Student {
                 Email: %s
                 RA: %s
                 Grade: %s - %s - %s
+                Average: %s
+                Status: %s
                 """.
                 formatted(
                         name,
@@ -88,7 +101,9 @@ public class Student {
                         ra,
                         grade1,
                         grade2,
-                        grade3
+                        grade3,
+                        getGradeAveraged(),
+                        getStatus()
                         );
 
     }
