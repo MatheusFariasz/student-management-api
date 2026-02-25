@@ -20,6 +20,42 @@ public class Student {
     private BigDecimal grade2;
     private BigDecimal grade3;
 
+    public BigDecimal getGradeAveraged(){
+        return grade1.add(grade2).add(grade3).divide(BigDecimal.valueOf(3), 2, RoundingMode.FLOOR);
+    }
+
+    public String getStatus(){
+        if (getGradeAveraged().compareTo(BigDecimal.valueOf(4)) < 0) return "Failed";
+        if (getGradeAveraged().compareTo(BigDecimal.valueOf(6)) < 0) return "Remedial";
+        return "Approved";
+    }
+
+    @Override
+    public String toString() {
+        return """
+                -----------------------
+                Student
+                -----------------------
+                Name: %s
+                Email: %s
+                RA: %s
+                Grade: %s - %s - %s
+                Average: %s
+                Status: %s
+                """.
+                formatted(
+                        name,
+                        email,
+                        ra,
+                        grade1,
+                        grade2,
+                        grade3,
+                        getGradeAveraged(),
+                        getStatus()
+                );
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -70,41 +106,5 @@ public class Student {
 
     public void setGrade3(BigDecimal grade3) {
         this.grade3 = grade3;
-    }
-
-    public BigDecimal getGradeAveraged(){
-        return grade1.add(grade2).add(grade3).divide(BigDecimal.valueOf(3), 2, RoundingMode.FLOOR);
-    }
-
-    public String getStatus(){
-        if (getGradeAveraged().compareTo(BigDecimal.valueOf(4)) < 0) return "Failed";
-        if (getGradeAveraged().compareTo(BigDecimal.valueOf(6)) < 0) return "Remedial";
-        return "Approved";
-    }
-
-    @Override
-    public String toString() {
-        return """
-                -----------------------
-                Student
-                -----------------------
-                Name: %s
-                Email: %s
-                RA: %s
-                Grade: %s - %s - %s
-                Average: %s
-                Status: %s
-                """.
-                formatted(
-                        name,
-                        email,
-                        ra,
-                        grade1,
-                        grade2,
-                        grade3,
-                        getGradeAveraged(),
-                        getStatus()
-                        );
-
     }
 }
