@@ -30,6 +30,26 @@ public class Student {
         return "Approved";
     }
 
+    public String getStateAsString(){
+        return """
+                -----------------------
+                Student
+                -----------------------
+                Name: %s
+                Email: %s
+                RA: %s
+                Grade: %s - %s - %s
+                """.
+                formatted(
+                        name,
+                        email,
+                        ra,
+                        grade1,
+                        grade2,
+                        grade3
+                );
+    }
+
     @Override
     public String toString() {
         return """
