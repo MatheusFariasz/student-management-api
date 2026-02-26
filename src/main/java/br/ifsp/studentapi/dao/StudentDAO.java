@@ -24,10 +24,6 @@ public class StudentDAO {
         return true;
     }
 
-    public void update(Student student){
-        em.merge(student);
-    }
-
     public Student findByName(String nome){
         String jpql = "SELECT s FROM Student s WHERE s.name = :n";
         try {

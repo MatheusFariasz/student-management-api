@@ -2,6 +2,7 @@ package br.ifsp.studentapi.ui;
 
 import br.ifsp.studentapi.dto.UpdateStudentInput;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class StudentMenu {
@@ -29,11 +30,24 @@ public class StudentMenu {
         }
         int op = scanner.nextInt();
         scanner.nextLine();
+
         return op;
+    }
+
+    public UpdateStudentInput readUpdateStudent(){
+        String name = readLine("New name: ");
+        String ra = readLine("New ra: ");
+        String email = readLine("New email: ");
+        BigDecimal grade1 = BigDecimal.valueOf(Long.parseLong(readLine("new 1° Grade: ")));
+        BigDecimal grade2 = BigDecimal.valueOf(Long.parseLong(readLine("new 2° Grade: ")));
+        BigDecimal grade3 = BigDecimal.valueOf(Long.parseLong(readLine("new 3° Grade: ")));
+
+        return new UpdateStudentInput(name, ra, email, grade1, grade2, grade3);
     }
 
     public String readLine(String label){
         System.out.println(label);
+
         return scanner.nextLine();
     }
 }
