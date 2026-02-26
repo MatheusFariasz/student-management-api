@@ -1,5 +1,7 @@
 package br.ifsp.studentapi.ui;
 
+import br.ifsp.studentapi.dto.UpdateStudentInput;
+
 import java.util.Scanner;
 
 public class StudentMenu {
