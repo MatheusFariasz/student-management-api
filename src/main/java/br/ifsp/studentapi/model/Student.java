@@ -20,6 +20,17 @@ public class Student {
     private BigDecimal grade2;
     private BigDecimal grade3;
 
+    public Student(){}
+
+    public Student(String name, String ra, String email, BigDecimal grade1, BigDecimal grade2, BigDecimal grade3) {
+        this.name = name;
+        this.ra = ra;
+        this.email = email;
+        this.grade1 = grade1;
+        this.grade2 = grade2;
+        this.grade3 = grade3;
+    }
+
     public BigDecimal getGradeAveraged(){
         return grade1.add(grade2).add(grade3).divide(BigDecimal.valueOf(3), 2, RoundingMode.FLOOR);
     }
