@@ -1,7 +1,9 @@
 package br.ifsp.studentapi;
 
 import br.ifsp.studentapi.dao.StudentDAO;
+import br.ifsp.studentapi.dto.UpdateStudentInput;
 import br.ifsp.studentapi.model.Student;
+import br.ifsp.studentapi.service.UpdateStudentService;
 import br.ifsp.studentapi.ui.StudentMenu;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -32,7 +34,6 @@ public class Main {
 //                default -> System.out.println("Invalid option.");
 //            }
 //        } while (op != 6);
-
         Student student = new Student();
         student.setName("Matheus");
         student.setRa("SC304887X");
@@ -48,10 +49,21 @@ public class Main {
         EntityManager em = factory.createEntityManager();
 
         StudentDAO studentDAO = new StudentDAO(em);
+        UpdateStudentService updateStudentService = new UpdateStudentService(studentDAO);
 
         em.getTransaction().begin();
 
         studentDAO.create(student);
+
+        UpdateStudentInput updateStudentInput = new UpdateStudentInput(
+                "kaique",
+                "SC3046699",
+                "kaique@email.com",
+                new BigDecimal(4),
+                new BigDecimal(2),
+                new BigDecimal(3.7));
+
+        updateStudentService.update("kaique", updateStudentInput);
 
         em.getTransaction().commit();
 

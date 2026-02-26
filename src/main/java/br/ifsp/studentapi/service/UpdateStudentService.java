@@ -11,8 +11,8 @@ public class UpdateStudentService {
         this.studentDAO = studentDAO;
     }
 
-    public boolean update(UpdateStudentInput input){
-        Student studentManeged = studentDAO.findByName(input.name());
+    public boolean update(String name, UpdateStudentInput input){
+        Student studentManeged = studentDAO.findByName(name);
         if (studentManeged == null) return false;
 
         studentManeged.setName(input.name());
@@ -24,5 +24,5 @@ public class UpdateStudentService {
         return true;
     }
 
-    
+
 }
