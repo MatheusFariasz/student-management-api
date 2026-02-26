@@ -2,16 +2,36 @@ package br.ifsp.studentapi;
 
 import br.ifsp.studentapi.dao.StudentDAO;
 import br.ifsp.studentapi.model.Student;
+import br.ifsp.studentapi.ui.StudentMenu;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.math.BigDecimal;
+import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+//        Scanner sc = new Scanner(System.in);
+//        StudentMenu menu = new StudentMenu(sc);
+//
+//        int op;
+//        do {
+//            menu.showOptions();
+//            op = menu.readOption();
+//
+//            switch (op) {
+//                case 1 -> { /* register */ }
+//                case 2 -> { /* delete */ }
+//                case 3 -> { /* update */ }
+//                case 4 -> { /* findByName */ }
+//                case 5 -> { /* listAll */ }
+//                case 6 -> System.out.println("Leaving...");
+//                default -> System.out.println("Invalid option.");
+//            }
+//        } while (op != 6);
 
         Student student = new Student();
         student.setName("Matheus");

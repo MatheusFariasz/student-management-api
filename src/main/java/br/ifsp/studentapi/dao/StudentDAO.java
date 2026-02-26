@@ -17,11 +17,11 @@ public class StudentDAO {
         em.persist(student);
     }
 
-    public void delete(String nome){
-        Student student = em.find(Student.class, nome);
-        if(student != null){
-            em.remove(student);
-        }
+    public boolean deleteByName(String nome){
+        Student student = findByName(nome);
+        if(student == null) return false;
+        em.remove(student);
+        return true;
     }
 
     public void update(Student student){
@@ -41,7 +41,7 @@ public class StudentDAO {
     }
 
     public List<Student> findAll(){
-        String jpql = "select s from Student s ";
+        String jpql = "SELECT s FROM Student s";
         return em.createQuery(jpql, Student.class).getResultList();
     }
 }
