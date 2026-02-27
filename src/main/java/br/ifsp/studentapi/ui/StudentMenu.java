@@ -40,9 +40,9 @@ public class StudentMenu {
         String name = readLine("name: ");
         String ra = readLine("ra: ");
         String email = readLine("email: ");
-        BigDecimal grade1 = BigDecimal.valueOf(Long.parseLong(readLine("1° Grade: ")));
-        BigDecimal grade2 = BigDecimal.valueOf(Long.parseLong(readLine("2° Grade: ")));
-        BigDecimal grade3 = BigDecimal.valueOf(Long.parseLong(readLine("3° Grade: ")));
+        BigDecimal grade1 = readBigDecimalLine("1° Grade: ");
+        BigDecimal grade2 = readBigDecimalLine("2° Grade: ");
+        BigDecimal grade3 = readBigDecimalLine("3° Grade: ");
 
         return new Student(name, ra, email, grade1, grade2, grade3);
     }
@@ -53,9 +53,9 @@ public class StudentMenu {
         String name = readLine("New name: ");
         String ra = readLine("New ra: ");
         String email = readLine("New email: ");
-        BigDecimal grade1 = BigDecimal.valueOf(Long.parseLong(readLine("new 1° Grade: ")));
-        BigDecimal grade2 = BigDecimal.valueOf(Long.parseLong(readLine("new 2° Grade: ")));
-        BigDecimal grade3 = BigDecimal.valueOf(Long.parseLong(readLine("new 3° Grade: ")));
+        BigDecimal grade1 = readBigDecimalLine("new 1° Grade: ");
+        BigDecimal grade2 = readBigDecimalLine("new 2° Grade: ");
+        BigDecimal grade3 = readBigDecimalLine("new 3° Grade: ");
 
         return new UpdateStudentInput(name, ra, email, grade1, grade2, grade3);
     }
@@ -70,5 +70,17 @@ public class StudentMenu {
         System.out.println(label);
 
         return scanner.nextLine();
+    }
+
+    public BigDecimal readBigDecimalLine(String label) {
+        while (true) {
+            System.out.print(label);
+            String s = scanner.nextLine().trim().replace(",", ".");
+            try {
+                return new BigDecimal(s);
+            } catch (NumberFormatException e) {
+                System.out.println("Valid input: 4,4 or 4.4");
+            }
+        }
     }
 }

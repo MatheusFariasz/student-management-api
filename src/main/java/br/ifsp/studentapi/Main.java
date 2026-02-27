@@ -78,38 +78,5 @@ public class Main {
                 default -> System.out.println("Invalid option.");
             }
         } while (op != 6);
-
-//        Student student = new Student();
-//        student.setName("Matheus");
-//        student.setRa("SC304887X");
-//        student.setEmail("matheus@ifsp.edu.br");
-//        student.setGrade1(BigDecimal.valueOf(2));
-//        student.setGrade2(BigDecimal.valueOf(9));
-//        student.setGrade3(BigDecimal.valueOf(2));
-//
-//        System.out.println(student);
-//
-//
-//
-//
-//
-//        em.getTransaction().begin();
-//
-//        studentDAO.create(student);
-//
-//        UpdateStudentInput updateStudentInput = new UpdateStudentInput(
-//                "kaique",
-//                "SC3046699",
-//                "kaique@email.com",
-//                new BigDecimal(4),
-//                new BigDecimal(2),
-//                new BigDecimal(3.7));
-//
-//        updateStudentService.update("kaique", updateStudentInput);
-//
-//        em.getTransaction().commit();
-//
-//        em.close();
-
     }
 }
