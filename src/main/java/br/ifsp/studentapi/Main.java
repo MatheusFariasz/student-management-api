@@ -53,7 +53,9 @@ public class Main {
                     UpdateStudentInput updateStudentInput = menu.readUpdateStudent();
 
                     em.getTransaction().begin();
-                    updateStudentService.update(name, updateStudentInput);
+                    boolean ok = updateStudentService.update(name, updateStudentInput);
+                    System.out.println(ok? "Updated" : "Student not found");
+
                     em.getTransaction().commit();
                 }
                 case 4 -> {

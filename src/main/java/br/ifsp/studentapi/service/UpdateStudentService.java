@@ -21,6 +21,7 @@ public class UpdateStudentService {
         studentManeged.setGrade1(input.grade1());
         studentManeged.setGrade2(input.grade2());
         studentManeged.setGrade3(input.grade3());
+
         return true;
     }
 
