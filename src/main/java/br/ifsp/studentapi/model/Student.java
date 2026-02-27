@@ -31,6 +31,12 @@ public class Student {
         this.grade3 = grade3;
     }
 
+    public void validateGrade(BigDecimal grade){
+        if (grade.compareTo(BigDecimal.ZERO)< 0 || grade.compareTo(BigDecimal.TEN) < 0){
+            throw new IllegalArgumentException("Invalid grade");
+        }
+    }
+
     public BigDecimal getGradeAveraged(){
         return grade1.add(grade2).add(grade3).divide(BigDecimal.valueOf(3), 2, RoundingMode.FLOOR);
     }
@@ -120,6 +126,7 @@ public class Student {
     }
 
     public void setGrade1(BigDecimal grade1) {
+        validateGrade(grade1);
         this.grade1 = grade1;
     }
 
@@ -128,6 +135,7 @@ public class Student {
     }
 
     public void setGrade2(BigDecimal grade2) {
+        validateGrade(grade2);
         this.grade2 = grade2;
     }
 
@@ -136,6 +144,7 @@ public class Student {
     }
 
     public void setGrade3(BigDecimal grade3) {
+        validateGrade(grade3);
         this.grade3 = grade3;
     }
 }

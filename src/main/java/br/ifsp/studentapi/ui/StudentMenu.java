@@ -40,9 +40,9 @@ public class StudentMenu {
         String name = readLine("name: ");
         String ra = readLine("ra: ");
         String email = readLine("email: ");
-        BigDecimal grade1 = readBigDecimalLine("1° Grade: ");
-        BigDecimal grade2 = readBigDecimalLine("2° Grade: ");
-        BigDecimal grade3 = readBigDecimalLine("3° Grade: ");
+        BigDecimal grade1 = readGrade("1° Grade: ");
+        BigDecimal grade2 = readGrade("2° Grade: ");
+        BigDecimal grade3 = readGrade("3° Grade: ");
 
         return new Student(name, ra, email, grade1, grade2, grade3);
     }
@@ -53,9 +53,10 @@ public class StudentMenu {
         String name = readLine("New name: ");
         String ra = readLine("New ra: ");
         String email = readLine("New email: ");
-        BigDecimal grade1 = readBigDecimalLine("new 1° Grade: ");
-        BigDecimal grade2 = readBigDecimalLine("new 2° Grade: ");
-        BigDecimal grade3 = readBigDecimalLine("new 3° Grade: ");
+
+        BigDecimal grade1 = readGrade("new 1° Grade: ");
+        BigDecimal grade2 = readGrade("new 2° Grade: ");
+        BigDecimal grade3 = readGrade("new 3° Grade: ");
 
         return new UpdateStudentInput(name, ra, email, grade1, grade2, grade3);
     }
@@ -66,21 +67,33 @@ public class StudentMenu {
         return readLine("name: ");
     }
 
-    public String readLine(String label){
-        System.out.println(label);
+    private BigDecimal readGrade(String label){
+        BigDecimal grade;
+        do{
+            grade = readBigDecimalLine(label);
+            if (grade.compareTo(BigDecimal.ZERO) < 0 || grade.compareTo(BigDecimal.TEN) > 0) {
+                System.out.println("Invalid grade. Enter a value >= 0 and <= 10.");
+            }
+        } while (grade.compareTo(BigDecimal.ZERO) <= 0 || grade.compareTo(BigDecimal.TEN) > 0);
 
-        return scanner.nextLine();
+        return grade;
     }
 
-    public BigDecimal readBigDecimalLine(String label) {
+    private BigDecimal readBigDecimalLine(String label) {
         while (true) {
             System.out.print(label);
             String s = scanner.nextLine().trim().replace(",", ".");
             try {
                 return new BigDecimal(s);
             } catch (NumberFormatException e) {
-                System.out.println("Valid input: 4,4 or 4.4");
+                System.out.println("Valid input exempla: 4,4 or 4.4");
             }
         }
+    }
+
+    private String readLine(String label){
+        System.out.println(label);
+
+        return scanner.nextLine();
     }
 }
