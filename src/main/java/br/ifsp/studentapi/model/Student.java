@@ -33,7 +33,7 @@ public class Student {
 
     public void validateGrade(BigDecimal grade){
         if (grade.compareTo(new BigDecimal(0))< 0 || grade.compareTo(new BigDecimal(10)) > 0){
-            throw new IllegalArgumentException("Invalid grade");
+            throw new IllegalArgumentException("Nota inválida!");
         }
     }
 
@@ -42,20 +42,20 @@ public class Student {
     }
 
     public String getStatus(){
-        if (getGradeAveraged().compareTo(BigDecimal.valueOf(4)) < 0) return "Failed";
-        if (getGradeAveraged().compareTo(BigDecimal.valueOf(6)) < 0) return "Remedial";
-        return "Approved";
+        if (getGradeAveraged().compareTo(BigDecimal.valueOf(4)) < 0) return "Reprovado";
+        if (getGradeAveraged().compareTo(BigDecimal.valueOf(6)) < 0) return "Recuperação";
+        return "Aprovado";
     }
 
     public String getStateAsString(){
         return """
                 -----------------------
-                Student
+                Aluno
                 -----------------------
-                Name: %s
+                Nome: %s
                 Email: %s
                 RA: %s
-                Grade: %s - %s - %s
+                Notas: %s - %s - %s
                 """.
                 formatted(
                         name,
@@ -71,14 +71,14 @@ public class Student {
     public String toString() {
         return """
                 -----------------------
-                Student
+                Aluno
                 -----------------------
-                Name: %s
+                Nome: %s
                 Email: %s
                 RA: %s
-                Grade: %s - %s - %s
-                Average: %s
-                Status: %s
+                Notas: %s - %s - %s
+                Média: %s
+                Situação: %s
                 """.
                 formatted(
                         name,

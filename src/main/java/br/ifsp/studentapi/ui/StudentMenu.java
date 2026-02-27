@@ -14,20 +14,20 @@ public class StudentMenu {
     }
 
     public void showOptions(){
-        System.out.println("\n=== MENU STUDENT ===");
-        System.out.println("1 - Register");
-        System.out.println("2 - Delete by name");
-        System.out.println("3 - Update");
-        System.out.println("4 - Search by name");
-        System.out.println("5 - List all");
-        System.out.println("6 - Exit");
-        System.out.print("Choose an option: ");
+        System.out.println("\n=== CADASTRO DE ALUNOS ===");
+        System.out.println("1 - Cadastrar Aluno");
+        System.out.println("2 - Excluir Aluno");
+        System.out.println("3 - Alterar  Aluno");
+        System.out.println("4 - Buscar Aluno pelo nome");
+        System.out.println("5 - Listar alunos (com status)");
+        System.out.println("6 - Fim");
+        System.out.print("Digite a opção desejada: ");
     }
 
     public int readOption(){
         while (!scanner.hasNextInt()){
             scanner.nextLine();
-            System.out.println("Invalid Option. Give a number: ");
+            System.out.println("Opção inválida! Digite um número: ");
         }
         int op = scanner.nextInt();
         scanner.nextLine();
@@ -36,34 +36,34 @@ public class StudentMenu {
     }
 
     public Student readCreateStudent(){
-        System.out.println("STUDENT REGISTER: ");
+        System.out.println("CADASTRO DE ALUNO: ");
 
-        String name = readLine("name: ");
-        String ra = readLine("ra: ");
-        String email = readLine("email: ");
-        BigDecimal grade1 = readGrade("1° Grade: ");
-        BigDecimal grade2 = readGrade("2° Grade: ");
-        BigDecimal grade3 = readGrade("3° Grade: ");
+        String name = readLine("Nome: ");
+        String ra = readLine("RA: ");
+        String email = readLine("Email: ");
+        BigDecimal grade1 = readGrade("1° Nota: ");
+        BigDecimal grade2 = readGrade("2° Nota: ");
+        BigDecimal grade3 = readGrade("3° Nota: ");
 
         return new Student(name, ra, email, grade1, grade2, grade3);
     }
 
     public UpdateStudentInput readUpdateStudent(){
-        String name = readLine("New name: ");
-        String ra = readLine("New ra: ");
-        String email = readLine("New email: ");
+        String name = readLine("Novo nome: ");
+        String ra = readLine("Novo RA: ");
+        String email = readLine("Novo email: ");
 
-        BigDecimal grade1 = readGrade("new 1° Grade: ");
-        BigDecimal grade2 = readGrade("new 2° Grade: ");
-        BigDecimal grade3 = readGrade("new 3° Grade: ");
+        BigDecimal grade1 = readGrade("Nova 1° nota: ");
+        BigDecimal grade2 = readGrade("Nova 2° nota: ");
+        BigDecimal grade3 = readGrade("Nova 3° nota: ");
 
         return new UpdateStudentInput(name, ra, email, grade1, grade2, grade3);
     }
 
     public String deleteStudentInput(){
-        System.out.println("DELETE STUDENT: ");
+        System.out.println("EXCLUIR ALUNO: ");
 
-        return readLine("name: ");
+        return readLine("Nome: ");
     }
 
     private BigDecimal readGrade(String label){
@@ -71,7 +71,7 @@ public class StudentMenu {
         do{
             grade = readBigDecimalLine(label);
             if (grade.compareTo(BigDecimal.ZERO) < 0 || grade.compareTo(BigDecimal.TEN) > 0) {
-                System.out.println("Invalid grade. Enter a value >= 0 and <= 10.");
+                System.out.println("Nota inválida. Insira um valor >= 0 e <= 10.");
             }
         } while (grade.compareTo(BigDecimal.ZERO) < 0 || grade.compareTo(BigDecimal.TEN) > 0);
 
@@ -85,7 +85,7 @@ public class StudentMenu {
             try {
                 return new BigDecimal(s);
             } catch (NumberFormatException e) {
-                System.out.println("Valid input exempla: 4,4 or 4.4");
+                System.out.println("Exemplo de entrada válido: 6,7 ou 6.7");
             }
         }
     }
@@ -96,7 +96,7 @@ public class StudentMenu {
         do{
             System.out.println(label);
             input = scanner.nextLine();
-            if (input == null || input.isBlank()) System.out.println(label + "can not be blank");
+            if (input == null || input.isBlank()) System.out.println(label + "não pode ser vazio.");
         }
         while (input == null || input.isBlank());
 

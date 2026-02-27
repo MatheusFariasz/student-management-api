@@ -45,35 +45,35 @@ public class Main {
                     em.getTransaction().begin();
                     boolean ok = studentDAO.deleteByName(name);
                     em.getTransaction().commit();
-                    System.out.println(ok? "Deleted" : "Student not found");
+                    System.out.println(ok? "Aluno deletado!" : "Aluno não encontrado");
                 }
                 case 3 -> {
-                    System.out.println("STUDENT UPDATE: ");
-                    System.out.println("name: ");
+                    System.out.println("ALTERAR ALUNO: ");
+                    System.out.println("Nome do aluno: ");
                     String name = sc.nextLine();
 
                     Student studentManaged = studentDAO.findByName(name);
                     if (studentManaged == null){
-                        System.out.println("Student not found");
+                        System.out.println("Aluno não encontrado");
                     }else {
                         UpdateStudentInput updateStudentInput = menu.readUpdateStudent();
                         em.getTransaction().begin();
                         boolean ok = updateStudentService.update(studentManaged, updateStudentInput);
-                        System.out.println(ok ? "Updated" : "Student not found");
+                        System.out.println(ok ? "Aluno atualizado!" : "Aluno não encontrado");
                         em.getTransaction().commit();
                     }
                 }
                 case 4 -> {
-                    System.out.println("Find student by name: ");
-                    System.out.println("name: ");
+                    System.out.println("BUSCAR ALUNO PELO NOME: ");
+                    System.out.println("Nome do aluno: ");
                     String name = sc.nextLine();
 
                     Student student = studentDAO.findByName(name);
-                    if (student == null) System.out.println("Student not found");
+                    if (student == null) System.out.println("Aluno não encontrado");
                      else System.out.println(student.getStateAsString());
                 }
                 case 5 -> {
-                    System.out.println("Showing all students: ");
+                    System.out.println("EXIBINDO TODOS OS ALUNOS: ");
                     List<Student> students = studentDAO.findAll();
                     for (Student s: students){
                         System.out.println(s);
@@ -81,9 +81,9 @@ public class Main {
                 }
                 case 6 ->{
                         em.close();
-                        System.out.println("Leaving...");
+                        System.out.println("SAINDO...");
                 }
-                default -> System.out.println("Invalid option.");
+                default -> System.out.println("OPÇÃO INVÁLIDA!");
             }
         } while (op != 6);
     }
