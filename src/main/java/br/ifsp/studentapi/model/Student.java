@@ -32,7 +32,7 @@ public class Student {
     }
 
     public void validateGrade(BigDecimal grade){
-        if (grade.compareTo(BigDecimal.ZERO)< 0 || grade.compareTo(BigDecimal.TEN) < 0){
+        if (grade.compareTo(new BigDecimal(0))< 0 || grade.compareTo(new BigDecimal(10)) > 0){
             throw new IllegalArgumentException("Invalid grade");
         }
     }

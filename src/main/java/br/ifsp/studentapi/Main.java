@@ -9,7 +9,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
@@ -45,18 +44,23 @@ public class Main {
                     em.getTransaction().begin();
                     boolean ok = studentDAO.deleteByName(name);
                     em.getTransaction().commit();
-                    System.out.println(ok? "Deleted" : "Student not find");
+                    System.out.println(ok? "Deleted" : "Student not found");
                 }
                 case 3 -> {
+                    System.out.println("STUDENT UPDATE: ");
                     System.out.println("name: ");
                     String name = sc.nextLine();
-                    UpdateStudentInput updateStudentInput = menu.readUpdateStudent();
 
-                    em.getTransaction().begin();
-                    boolean ok = updateStudentService.update(name, updateStudentInput);
-                    System.out.println(ok? "Updated" : "Student not found");
-
-                    em.getTransaction().commit();
+                    Student studentManaged = studentDAO.findByName(name);
+                    if (studentManaged == null){
+                        System.out.println("Student not found");
+                    }else {
+                        UpdateStudentInput updateStudentInput = menu.readUpdateStudent();
+                        em.getTransaction().begin();
+                        boolean ok = updateStudentService.update(studentManaged, updateStudentInput);
+                        System.out.println(ok ? "Updated" : "Student not found");
+                        em.getTransaction().commit();
+                    }
                 }
                 case 4 -> {
                     System.out.println("Find student by name: ");
@@ -64,7 +68,8 @@ public class Main {
                     String name = sc.nextLine();
 
                     Student student = studentDAO.findByName(name);
-                    System.out.println(student.getStateAsString());
+                    if (student == null) System.out.println("Student not found");
+                     else System.out.println(student.getStateAsString());
                 }
                 case 5 -> {
                     System.out.println("Showing all students: ");

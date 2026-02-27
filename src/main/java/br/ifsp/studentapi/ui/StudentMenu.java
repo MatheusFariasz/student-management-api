@@ -19,7 +19,7 @@ public class StudentMenu {
         System.out.println("2 - Delete by name");
         System.out.println("3 - Update");
         System.out.println("4 - Search by name");
-        System.out.println("5 - list all");
+        System.out.println("5 - List all");
         System.out.println("6 - Exit");
         System.out.print("Choose an option: ");
     }
@@ -37,6 +37,7 @@ public class StudentMenu {
 
     public Student readCreateStudent(){
         System.out.println("STUDENT REGISTER: ");
+
         String name = readLine("name: ");
         String ra = readLine("ra: ");
         String email = readLine("email: ");
@@ -48,8 +49,6 @@ public class StudentMenu {
     }
 
     public UpdateStudentInput readUpdateStudent(){
-        System.out.println("STUDENT UPDATE: ");
-
         String name = readLine("New name: ");
         String ra = readLine("New ra: ");
         String email = readLine("New email: ");
@@ -74,7 +73,7 @@ public class StudentMenu {
             if (grade.compareTo(BigDecimal.ZERO) < 0 || grade.compareTo(BigDecimal.TEN) > 0) {
                 System.out.println("Invalid grade. Enter a value >= 0 and <= 10.");
             }
-        } while (grade.compareTo(BigDecimal.ZERO) <= 0 || grade.compareTo(BigDecimal.TEN) > 0);
+        } while (grade.compareTo(BigDecimal.ZERO) < 0 || grade.compareTo(BigDecimal.TEN) > 0);
 
         return grade;
     }
@@ -92,8 +91,15 @@ public class StudentMenu {
     }
 
     private String readLine(String label){
-        System.out.println(label);
+        String input = null;
 
-        return scanner.nextLine();
+        do{
+            System.out.println(label);
+            input = scanner.nextLine();
+            if (input == null || input.isBlank()) System.out.println(label + "can not be blank");
+        }
+        while (input == null || input.isBlank());
+
+        return input;
     }
 }

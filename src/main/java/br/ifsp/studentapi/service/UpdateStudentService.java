@@ -11,10 +11,7 @@ public class UpdateStudentService {
         this.studentDAO = studentDAO;
     }
 
-    public boolean update(String name, UpdateStudentInput input){
-        Student studentManeged = studentDAO.findByName(name);
-        if (studentManeged == null) return false;
-
+    public boolean update(Student studentManeged, UpdateStudentInput input){
         studentManeged.setName(input.name());
         studentManeged.setRa(input.ra());
         studentManeged.setEmail(input.email());
